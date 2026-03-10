@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flash Delivery</title>
+    <style>
+        /* Variáveis de Cor - Azul como cor principal */
+        :root {
+            --primary-color: #007BFF; /* Azul principal */
+            --primary-hover: #0056b3;
+            --dark-bg: #222222;
+            --text-dark: #333333;
+            --text-light: #ffffff;
+            --light-bg: #f8f9fa;
+        }
+
+        /* Reset Básico */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            color: var(--text-dark);
+            line-height: 1.6;
+            background-color: #fff;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Botões */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 28px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            gap: 10px;
+        }
+
+        .btn-dark {
+            background-color: var(--dark-bg);
+            color: var(--text-light);
+        }
+
+        .btn-dark:hover {
+            background-color: #000;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: var(--text-light);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-hover);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--text-light);
+            color: var(--text-light);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--text-light);
+            color: var(--primary-color);
+        }
+
+        /* Cabeçalho */
+        header {
+            background-color: var(--primary-color);
+            padding: 20px 0;
+            position: relative;
+            z-index: 10;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 900;
+            color: var(--text-light);
+            text-decoration: none;
+            font-style: italic;
+        }
+
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: 500;
+        }
+
+        /* Hero Section */
+        .hero {
+            background-color: var(--primary-color);
+            color: var(--text-light);
+            padding: 80px 0 120px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .hero-content {
+            max-width: 50%;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .hero-image {
+            width: 40%;
+            height: 400px;
+            background-color: rgba(255,255,255,0.2);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            border: 2px dashed rgba(255,255,255,0.5);
+        }
+
+        /* Value Prop */
+        .value-prop {
+            padding: 80px 0;
+            text-align: center;
+            background-color: #fff;
+        }
+
+        .value-prop h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .value-prop p {
+            max-width: 800px;
+            margin: 0 auto;
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        /* Como Funciona */
+        .how-it-works {
+            background-color: var(--light-bg);
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .how-it-works h2 {
+            margin-bottom: 50px;
+            font-size: 2rem;
+        }
+
+        .steps-grid {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .step {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .step-circle {
+            width: 150px;
+            height: 150px;
+            background-color: #fff;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            color: #999;
+            font-size: 0.9rem;
+            border: 3px solid var(--primary-color);
+        }
+
+        .step h3 {
+            margin-bottom: 10px;
+        }
+
+        .step p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        /* Seções Divididas (Entregadores / Empresas) */
+        .split-section {
+            padding: 100px 0;
+            background-color: #fff;
+        }
+
+        .split-section:nth-child(even) {
+            background-color: var(--light-bg);
+        }
+
+        .split-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 50px;
+        }
+
+        .split-content, .split-image {
+            flex: 1;
+        }
+
+        .split-image-placeholder {
+            width: 100%;
+            height: 350px;
+            background-color: #e0e0e0;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .split-content h2 {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+        }
+
+        .split-content p {
+            margin-bottom: 30px;
+            color: #555;
+            font-size: 1.1rem;
+        }
+
+        /* Mapa / Atuação */
+        .map-section {
+            background-color: var(--dark-bg);
+            color: var(--text-light);
+            padding: 100px 0;
+        }
+
+        .map-section .split-content p {
+            color: #ddd;
+        }
+
+        /* NOVA SEÇÃO: Carrossel de Veículos */
+        .vehicles-section {
+            padding: 80px 0;
+            background-color: #fff;
+            text-align: center;
+        }
+
+        .vehicles-section h2 {
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+        }
+
+        .vehicles-section > p {
+            color: #666;
+            margin-bottom: 40px;
+            font-size: 1.1rem;
+        }
+
+        .vehicles-carousel {
+            display: flex;
+            gap: 20px;
+            overflow-x: auto;
+            padding: 20px 10px;
+            scroll-snap-type: x mandatory;
+            /* Oculta a barra de rolagem mas mantém a funcionalidade */
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none;  /* IE/Edge */
+        }
+        
+        .vehicles-carousel::-webkit-scrollbar {
+            display: none; /* Chrome/Safari */
+        }
+
+        .vehicle-card {
+            flex: 0 0 250px;
+            background-color: var(--light-bg);
+            border-radius: 15px;
+            padding: 40px 20px;
+            scroll-snap-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+            border: 1px solid #eaeaea;
+        }
+
+        .vehicle-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-color);
+        }
+
+        .vehicle-img-placeholder {
+            width: 120px;
+            height: 80px;
+            background-color: #ddd;
+            margin: 0 auto 20px auto;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-size: 0.8rem;
+        }
+
+        .vehicle-card h3 {
+            font-size: 1.2rem;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+        }
+
+        .vehicle-card p {
+            font-size: 0.9rem;
+            color: #777;
+        }
+
+        /* NOVA SEÇÃO: Download App */
+        .app-download-section {
+            background-color: var(--primary-color);
+            padding: 60px 0;
+            overflow: hidden;
+        }
+
+        .app-download-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 60px;
+        }
+
+        .app-mockup {
+            width: 280px;
+            height: 550px;
+            background-color: var(--light-bg);
+            border-radius: 35px;
+            border: 10px solid var(--dark-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #555;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            position: relative;
+            transform: translateY(20px); /* Leve efeito saindo da tela */
+        }
+
+        .app-download-content {
+            color: var(--text-light);
+            max-width: 400px;
+        }
+
+        .app-download-content h2 {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+            line-height: 1.2;
+        }
+
+        .app-download-content p {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .store-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .store-buttons .btn {
+            width: fit-content;
+            font-size: 1.1rem;
+        }
+
+        /* Ajuda / Contato (Acima do Footer) */
+        .help-section {
+            text-align: center;
+            padding: 60px 0;
+            background-color: #fff;
+            border-bottom: 1px solid #eee;
+        }
+
+        .help-section h3 {
+            margin-bottom: 30px;
+            color: var(--text-dark);
+        }
+
+        .help-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .help-btn {
+            padding: 10px 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            color: #555;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .help-btn:hover {
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        /* Footer */
+        footer {
+            background-color: #111;
+            color: #aaa;
+            padding: 60px 0 20px;
+        }
+
+        .footer-grid {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h4 {
+            color: #fff;
+            margin-bottom: 20px;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul li a {
+            color: #aaa;
+            text-decoration: none;
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--primary-color);
+        }
+
+        .copyright {
+            text-align: center;
+            border-top: 1px solid #333;
+            padding-top: 20px;
+            font-size: 0.9rem;
+        }
+
+        /* Responsividade Básica */
+        @media (max-width: 768px) {
+            .hero .container, .split-container, .app-download-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            .hero-content, .hero-image, .split-content, .split-image {
+                max-width: 100%;
+                width: 100%;
+            }
+            .nav-links {
+                display: none;
+            }
+            .hero h1 { font-size: 2.5rem; }
+            
+            .app-mockup {
+                transform: translateY(0);
+                margin-bottom: 30px;
+            }
+            .store-buttons {
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <nav>
+                <a href="#" class="logo">FLASH DELIVERY</a>
+                <div class="nav-links">
+                    <a href="#">Início</a>
+                    <a href="#">Sobre</a>
+                    <a href="#">Para Entregadores</a>
+                    <a href="#">Para Empresas</a>
+                    <a href="#">Ajuda</a>
+                </div>
+                <a href="#" class="btn btn-outline">Entrar</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Entregas seguras e rápidas para Paragominas e região!</h1>
+                <p>O aplicativo ideal que conecta restaurantes, lanchonetes e lojas de diversos segmentos a entregadores autônomos.</p>
+                <a href="#" class="btn btn-dark">Cadastre-se agora</a>
+            </div>
+            <div class="hero-image">
+                [ Imagem de mão segurando celular ]
+            </div>
+        </div>
+    </section>
+
+    <section class="value-prop">
+        <div class="container">
+            <h2>O app delivery ideal para o seu negócio</h2>
+            <p>A Flash Delivery surge de uma necessidade real encontrada na cidade de Paragominas e região. Trazemos agilidade e responsabilidade com cada entrega, atuando na zona urbana de cidades e municípios. Tudo isso apresentando um custo menor de entrega do que em relação a uma contratação fixa.</p>
+        </div>
+    </section>
+
+    <section class="how-it-works">
+        <div class="container">
+            <h2>Como funciona?</h2>
+            <div class="steps-grid">
+                <div class="step">
+                    <div class="step-circle">[ Imagem de Notebook ]</div>
+                    <h3>Solicite a entrega</h3>
+                    <p>O empresário parceiro realiza uma recarga no aplicativo e solicita um entregador para o serviço.</p>
+                </div>
+                <div class="step">
+                    <div class="step-circle">[ Imagem Busca ]</div>
+                    <h3>Busca entregador</h3>
+                    <p>O aplicativo sempre irá notificar o entregador mais próximo da retirada para otimizar o tempo.</p>
+                </div>
+                <div class="step">
+                    <div class="step-circle">[ Imagem Entrega ]</div>
+                    <h3>Realiza a entrega</h3>
+                    <p>O prestador realiza as entregas até o cliente final. Qualidade, agilidade e garantia na entrega.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="split-section">
+        <div class="container split-container">
+            <div class="split-image">
+                <div class="split-image-placeholder">[ Imagem de Entregador com Mochila ]</div>
+            </div>
+            <div class="split-content">
+                <h2>Flash para Entregadores</h2>
+                <p>Ideal para motoboys que desejam melhorar seus ganhos com as entregas. Trabalhe de forma autônoma tendo altos ganhos conforme sua rotina de atendimento. Após o cadastro, você tem acesso às entregas disponíveis, ficando a seu critério aceitar ou não.</p>
+                <p><strong>Bônus:</strong> Oferecemos ganhos maiores em períodos com movimento mais baixo!</p>
+                <a href="#" class="btn btn-primary">Quero ser entregador parceiro</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="split-section">
+        <div class="container split-container" style="flex-direction: row-reverse;">
+            <div class="split-image">
+                <div class="split-image-placeholder">[ Imagem da Bag de Entrega ]</div>
+            </div>
+            <div class="split-content">
+                <h2>Flash para Empresas</h2>
+                <p>Um aplicativo de serviço de entregas para empresas que desejam aderir ao delivery ou melhorar sua qualidade e ganhos. Nossa diversificação atende qualquer tipo de produto e funciona 24 horas por dia, dependendo apenas da disponibilidade de entregadores.</p>
+                <a href="#" class="btn btn-dark">Quero ser um estabelecimento parceiro</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="map-section">
+        <div class="container split-container">
+            <div class="split-image">
+                <div class="split-image-placeholder" style="background-color: transparent; border: 2px dashed #555;">[ Imagem Mapa do Pará/Brasil ]</div>
+            </div>
+            <div class="split-content">
+                <h2 style="color: #fff;">ESTAMOS EM PARAGOMINAS E REGIÃO</h2>
+                <p>Nosso projeto apresenta economia e facilidade ao empresário, além de agregar valor social ao segmento de entregadores. Contribuímos diretamente para o desenvolvimento do município.</p>
+                <p>Contudo, a equipe Flash Delivery espera alcançar novos mercados e municípios vizinhos com a mesma necessidade no futuro.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="vehicles-section">
+        <div class="container">
+            <h2>Flexibilidade para cada entrega</h2>
+            <p>Nossa plataforma se adapta ao tamanho da sua necessidade, seja um documento ou uma grande encomenda.</p>
+            
+            <div class="vehicles-carousel">
+                <div class="vehicle-card">
+                    <div class="vehicle-img-placeholder">[ Ícone Bicicleta ]</div>
+                    <h3>Bicicleta</h3>
+                    <p>Ideal para pequenas distâncias e documentos rápidos no centro.</p>
+                </div>
+                <div class="vehicle-card">
+                    <div class="vehicle-img-placeholder">[ Ícone Moto ]</div>
+                    <h3>Moto</h3>
+                    <p>Agilidade máxima para alimentos, pacotes pequenos e médios.</p>
+                </div>
+                <div class="vehicle-card">
+                    <div class="vehicle-img-placeholder">[ Ícone Carro ]</div>
+                    <h3>Carro</h3>
+                    <p>Segurança extra para bolos, arranjos ou caixas médias.</p>
+                </div>
+                <div class="vehicle-card">
+                    <div class="vehicle-img-placeholder">[ Ícone Van ]</div>
+                    <h3>Van</h3>
+                    <p>Perfeito para grandes volumes ou múltiplas entregas empresariais.</p>
+                </div>
+                <div class="vehicle-card">
+                    <div class="vehicle-img-placeholder">[ Ícone Caminhonete ]</div>
+                    <h3>Caminhonete</h3>
+                    <p>Para cargas pesadas, materiais de construção ou itens volumosos.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="app-download-section">
+        <div class="container app-download-container">
+            <div class="app-mockup">
+                [ Interface do App Flash Delivery ]
+            </div>
+            <div class="app-download-content">
+                <h2>Baixe agora!</h2>
+                <p>Tenha a solução completa de entregas na palma da sua mão. Rápido, seguro e feito para a nossa região.</p>
+                <div class="store-buttons">
+                    <a href="#" class="btn btn-dark">▶ Baixar no Google Play</a>
+                    <a href="#" class="btn btn-dark"> Baixar na App Store</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="help-section">
+        <div class="container">
+            <h3>Precisa de ajuda?</h3>
+            <div class="help-links">
+                <a href="#" class="help-btn">📞 0800 000 0000</a>
+                <a href="#" class="help-btn">✉ Contato Suporte</a>
+                <a href="#" class="help-btn">💬 Manual de Entregadores</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h2 class="logo" style="color: var(--primary-color);">FLASH DELIVERY</h2>
+                </div>
+                <div class="footer-col">
+                    <h4>Sobre</h4>
+                    <ul>
+                        <li><a href="#">Quem somos</a></li>
+                        <li><a href="#">Termos para Empresas</a></li>
+                        <li><a href="#">Termos para Entregadores</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Suporte</h4>
+                    <ul>
+                        <li><a href="#">Ajuda</a></li>
+                        <li><a href="#">Perguntas Frequentes</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2026 Flash Delivery. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
